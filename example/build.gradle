@@ -19,11 +19,11 @@ android {
 }
 
 dependencies {
-    androidTestCompile('com.android.support:support-annotations:26.1.0') {
-        force = true
-    }
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':latte-ec')
+    //    androidTestCompile('com.android.support:support-annotations:26.1.0') {
+    //        force = true
+    //    }
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':latte-ec')
     //构建项目依赖，修改为annotationProcessor
     annotationProcessor project(':latte-compiler')
 }
