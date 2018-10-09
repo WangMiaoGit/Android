@@ -20,7 +20,7 @@ import me.yokeyword.fragmentation.SupportActivity;
  * 修改备注：
  */
 
-//基类Activity
+//基类Activity   将基础的fragment加入
 public abstract class ProxyActivity extends SupportActivity {
 
     public abstract LatteDelegate setRootDelegate();

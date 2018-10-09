@@ -12,8 +12,8 @@ package com.wang.latte.app;
  */
 
 public enum ConfigType {
-    API_HOST,
-    APPLICATION_CONTEXT,
-    CONFIG_READY,
+    API_HOST,//初始化设定的host
+    APPLICATION_CONTEXT,//应用的context
+    CONFIG_READY,//初始配置是否完成
     ICON
 }

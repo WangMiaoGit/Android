@@ -46,6 +46,7 @@ public class RestCreator {
                 RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
     }
 
+    //RetrofitHolder
     private static final class RetrofitHolder {
         private static final String BASE_URL = (String) Latte.getConfigurations().get(ConfigType.API_HOST.name());//初始化的host
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
@@ -55,6 +56,7 @@ public class RestCreator {
                 .build();
     }
 
+    //OKHttpHolder
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;
 

@@ -21,7 +21,7 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
  * 修改备注：
  */
 
-//跟布局 以Fragment
+//根布局 以Fragment
 public abstract class BaseDelegate extends SwipeBackFragment {
     @SuppressWarnings("SpellCheck")
     private Unbinder mUnbinder = null;

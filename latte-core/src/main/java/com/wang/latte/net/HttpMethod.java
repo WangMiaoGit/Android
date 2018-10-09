@@ -11,6 +11,7 @@ package com.wang.latte.net;
  * 修改备注：
  */
 
+//各种请求的方式
 public enum HttpMethod {
     GET,
     POST,

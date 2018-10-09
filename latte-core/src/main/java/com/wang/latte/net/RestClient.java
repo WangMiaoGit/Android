@@ -7,6 +7,7 @@ import com.wang.latte.net.callback.IFailure;
 import com.wang.latte.net.callback.IRequest;
 import com.wang.latte.net.callback.ISuccess;
 import com.wang.latte.net.callback.RequestCallbacks;
+import com.wang.latte.net.download.DownloadHandler;
 import com.wang.latte.ui.LatteLoader;
 import com.wang.latte.ui.LoaderStyle;
 
@@ -19,6 +20,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Multipart;
 
 /**
  * Created by MaxWang on 2018/9/21.
@@ -47,6 +49,10 @@ public class RestClient {
     private final LoaderStyle LOADER_STYTLE;
 
     private final Context CONTEXT;
+    //文件下载
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
 
     public RestClient(String url,
                       Map<String, Object> params,
@@ -57,7 +63,10 @@ public class RestClient {
                       RequestBody body,
                       LoaderStyle loaderStyle,
                       File file,
-                      Context context) {
+                      Context context,
+                      String downloadDir,
+                      String extension,
+                      String name) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -69,6 +78,11 @@ public class RestClient {
         this.FILE= file;
         this.LOADER_STYTLE = loaderStyle;
         this.CONTEXT = context;
+
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
+
     }
 
     //构建者模式取到builder
@@ -117,7 +131,9 @@ public class RestClient {
                 break;
             case UPLOAD:
                 final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
-
+                final MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
+                call = RestCreator.getRestService().upload(URL,body);
                 break;
             default:
                 break;
@@ -173,4 +189,9 @@ public class RestClient {
         request(HttpMethod.DELETE);
     }
 
+
+    public final void download(){
+        new DownloadHandler(URL,REQUEST,SUCCESS,FAILURE,ERROR,DOWNLOAD_DIR,EXTENSION,NAME)
+                .handleDownload();
+    }
 }

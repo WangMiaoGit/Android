@@ -66,5 +66,7 @@ public class ExampleDelegate extends LatteDelegate {
                 })
                 .build()
                 .get();//get请求  到RestClient
+
+        //如果使用下载.get()换成 .download()  在之前添加.dir().extension().name()
     }
 }
